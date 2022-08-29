@@ -8,11 +8,26 @@ import { generatePassword } from '../utils/generatePassword';
 const Generator = () => {
 	const [generatedPassword, setGeneratedPassword] = useState('P4$5W0rD!');
 	const [length, setLength] = useState(0);
+	const [checkedInput, setCheckedInput] = useState({
+		upper: false,
+		lower: false,
+		numbers: false,
+		symbols: false,
+	});
 	const [passwordStrength, setPasswordStrength] = useState('');
+
+	// const [upper, setUpper] = useState(false);
+	// const [lower, setLower] = useState(false);
+	// const [numbers, setNumbers] = useState(false);
+	// const [symbols, setSymbols] = useState(false);
 
 	// const handleGenerate = () => {
 
 	// }
+
+	useEffect(() => {
+		console.log(checkedInput);
+	}, [checkedInput]);
 
 	return (
 		<main className={styles.Generator}>
@@ -26,7 +41,14 @@ const Generator = () => {
 					<p>Character length</p> <span>{length}</span>
 				</div>
 
-				<InputContainer setLength={setLength} />
+				<InputContainer
+					setLength={setLength}
+					setCheckedInput={setCheckedInput}
+					// setUpper={setUpper}
+					// setLower={setLower}
+					// setNumbers={setNumbers}
+					// setSymbols={setSymbols}
+				/>
 
 				<div className={styles.Generator__strength}>
 					<span>strength</span>
