@@ -5,6 +5,7 @@ import { AiOutlineCopy } from 'react-icons/ai';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { generatePassword } from '../utils/generatePassword';
 import { toast } from 'react-toastify';
+import { passwordStrength } from 'check-password-strength';
 
 const Generator = () => {
 	const [generatedPassword, setGeneratedPassword] = useState('P4$5W0rD!');
@@ -15,7 +16,11 @@ const Generator = () => {
 		numbers: false,
 		symbols: false,
 	});
-	const [passwordStrength, setPasswordStrength] = useState('');
+	const [strength, setStrength] = useState('');
+
+	useEffect(() => {
+		setStrength(passwordStrength(generatedPassword).value);
+	}, [generatedPassword]);
 
 	return (
 		<main className={styles.Generator}>
@@ -44,7 +49,7 @@ const Generator = () => {
 				<div className={styles.Generator__strength}>
 					<span>strength</span>
 					<div className={styles.Generator__bars}>
-						<h2>{passwordStrength.length > 0 ? passwordStrength : ''}</h2>
+						<h2>{strength.length > 0 ? strength : ''}</h2>
 						<span className={styles.Generator__bars__bar}></span>
 						<span className={styles.Generator__bars__bar}></span>
 						<span className={styles.Generator__bars__bar}></span>
