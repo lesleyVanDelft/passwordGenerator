@@ -16,18 +16,10 @@ const Generator = () => {
 	});
 	const [passwordStrength, setPasswordStrength] = useState('');
 
-	// const [upper, setUpper] = useState(false);
-	// const [lower, setLower] = useState(false);
-	// const [numbers, setNumbers] = useState(false);
-	// const [symbols, setSymbols] = useState(false);
+	// const abc = 'asdfadsgjfdkgj';
+	// const accd = 'ASDFASDFDSFSD';
 
-	// const handleGenerate = () => {
-
-	// }
-
-	useEffect(() => {
-		console.log(checkedInput);
-	}, [checkedInput]);
+	// console.log(abc + accd);
 
 	return (
 		<main className={styles.Generator}>
@@ -63,7 +55,16 @@ const Generator = () => {
 
 				<button
 					onClick={() => {
-						console.log(generatePassword(length));
+						console.log(
+							generatePassword(
+								length,
+								checkedInput.upper,
+								checkedInput.lower,
+								checkedInput.numbers,
+								checkedInput.symbols,
+								checkedInput
+							)
+						);
 					}}>
 					<p>Generate</p> <BsArrowRightShort />
 				</button>
