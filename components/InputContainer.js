@@ -21,8 +21,6 @@ const InputContainer = ({
 		setLength(rangeValue);
 	}, [rangeValue, setLength]);
 
-	// const handleSelect = e => {};
-
 	useEffect(() => {
 		setCheckedInput({
 			upper: upper,

@@ -4,6 +4,7 @@ import InputContainer, { RangeContext } from './InputContainer';
 import { AiOutlineCopy } from 'react-icons/ai';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { generatePassword } from '../utils/generatePassword';
+import { toast } from 'react-toastify';
 
 const Generator = () => {
 	const [generatedPassword, setGeneratedPassword] = useState('P4$5W0rD!');
@@ -16,17 +17,19 @@ const Generator = () => {
 	});
 	const [passwordStrength, setPasswordStrength] = useState('');
 
-	// const abc = 'asdfadsgjfdkgj';
-	// const accd = 'ASDFASDFDSFSD';
-
-	// console.log(abc + accd);
-
 	return (
 		<main className={styles.Generator}>
 			<h1>Password Generator</h1>
 			<div className={styles.Generator__output}>
 				<h2>{generatedPassword}</h2>
-				<AiOutlineCopy />
+				<AiOutlineCopy
+					onClick={() => {
+						navigator.clipboard.writeText(generatedPassword);
+						toast('Password Copied!', {
+							position: toast.POSITION.TOP_CENTER,
+						});
+					}}
+				/>
 			</div>
 			<div className={styles.Generator__creation}>
 				<div className="flex-container">
@@ -36,10 +39,6 @@ const Generator = () => {
 				<InputContainer
 					setLength={setLength}
 					setCheckedInput={setCheckedInput}
-					// setUpper={setUpper}
-					// setLower={setLower}
-					// setNumbers={setNumbers}
-					// setSymbols={setSymbols}
 				/>
 
 				<div className={styles.Generator__strength}>
@@ -55,14 +54,13 @@ const Generator = () => {
 
 				<button
 					onClick={() => {
-						console.log(
+						setGeneratedPassword(
 							generatePassword(
 								length,
 								checkedInput.upper,
 								checkedInput.lower,
 								checkedInput.numbers,
-								checkedInput.symbols,
-								checkedInput
+								checkedInput.symbols
 							)
 						);
 					}}>

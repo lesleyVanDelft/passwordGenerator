@@ -1,11 +1,4 @@
-export const generatePassword = (
-	length,
-	upper,
-	lower,
-	numbers,
-	symbols,
-	checkedInput
-) => {
+export const generatePassword = (length, upper, lower, numbers, symbols) => {
 	let result = '';
 	let maxLength = length;
 
@@ -16,7 +9,6 @@ export const generatePassword = (
 	const joinedLetters = lettersLowerCase + lettersUpperCase;
 	const numberStr = '0123456789';
 	const symbolsStr = '!@#$%^&*()_-+={[}];.,';
-
 	const lowerNumberSymbols = lettersLowerCase + numberStr + symbolsStr;
 	const upperNumberSymbols = lettersUpperCase + numberStr + symbolsStr;
 	const lowerNumbers = lettersLowerCase + numberStr;
